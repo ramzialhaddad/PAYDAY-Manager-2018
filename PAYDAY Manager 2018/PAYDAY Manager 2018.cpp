@@ -734,6 +734,185 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		else {
 			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
 		}
+
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "one\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "one") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "of\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "of") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "the\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "the") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "terminals\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "terminals") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "to\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "to") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "open\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "open") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "the\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "the") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "magnetic\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "magnetic") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "seal\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "seal") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "of\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "of") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "the\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "the") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+
+		system("cls");
+		SetConsoleTextAttribute(hConsole, y);
+		cout << "door.\n";
+		SetConsoleTextAttribute(hConsole, w);
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+		if (thisVariableDoesNotReallyMatterTooMuch != "door.") {
+			if (saveFileLoyalty[searchedIndex] > 0) {
+				saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+			}
+		}
+		else {
+			saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+		}
 		sleep(2s);
 
 		system("cls");
@@ -743,7 +922,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		endl;
 		sleep(1s);
 
-		int calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+		calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
 		type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
 		sleep(1s);
 		endl;
