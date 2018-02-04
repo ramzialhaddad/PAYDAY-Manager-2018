@@ -72,6 +72,26 @@ void lose() {
 	}
 }
 
+std::vector <int> typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex) {
+	string thisVariableDoesNotReallyMatterTooMuch;
+	system("cls");
+	SetConsoleTextAttribute(hConsole, y);
+	cout << text << "\n";
+	SetConsoleTextAttribute(hConsole, w);
+	input;
+	cin >> thisVariableDoesNotReallyMatterTooMuch;
+	if (thisVariableDoesNotReallyMatterTooMuch != text) {
+		if (saveFileLoyalty[searchedIndex] > 0) {
+			saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 1);
+		}
+	}
+	else {
+		saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 1);
+	}
+
+	return saveFileLoyalty;
+} // End of function
+
 
 // This is the First World Bank Heist
 void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalance, std::vector <int> saveFileBudget, std::vector <int> saveFileSuspicion, std::vector <int> saveFileLoyalty, std::vector <int> saveFileReputation, std::vector <int> saveFileRisk, int searchedIndex) {
