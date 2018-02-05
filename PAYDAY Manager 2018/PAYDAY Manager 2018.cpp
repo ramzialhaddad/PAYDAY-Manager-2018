@@ -31,6 +31,7 @@ int w = 15;
 int r = 12;
 int y = 14;
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+std::vector <string> actions;
 
 // Function to generate random 50 50 outcomes
 int randomGenerator() {
@@ -100,9 +101,7 @@ int typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex
 
 // This is the First World Bank Heist
 void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalance, std::vector <int> saveFileBudget, std::vector <int> saveFileSuspicion, std::vector <int> saveFileLoyalty, std::vector <int> saveFileReputation, std::vector <int> saveFileRisk, int searchedIndex) {
-	type("Loading", 30);
-	lelip;
-	endl;
+	system("cls");
 
 	type("You send the Payday Gang to the bank...\n", 30);
 	sleep(1s);
@@ -122,7 +121,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			type("Your Risk or Suspicion Level is too high, the cops were called and the heist is now loud\n", 30);
 			sleep(1s);
 
-			type("Your Gang reached the Bank with cops alerted and launching an assult soon!\n", 30);
+			type("Your Gang reached the Bank with cops alerted and launching an assault soon!\n", 30);
 			lelip;
 			system("cls");
 			type("Quick! Type this!\n", 30);
@@ -139,9 +138,10 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 	case 1:
 		// If the user chose Loud
 		string thisVariableDoesNotReallyMatterTooMuch;
+		actions.push_back("loud");
 		system("cls");
 		PlaySound(TEXT("music.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		cout << "Your Gang reached the Bank with cops alerted and launching an assult soon!\n";
+		cout << "Your Gang reached the Bank with cops alerted and launching an assault soon!\n";
 		lelip;
 		endl;
 		type("They arrive at the Bank and shoot the visible security guards and gather up hostages", 40);
@@ -167,6 +167,8 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		lelip;
 		endl;
 		sleep(2s);
+		ab:
+		system("cls");
 		type("They found the Bank Manager, should they kill him or take him as a hostage?", 40);
 		sleep(2s);
 		endl;
@@ -187,6 +189,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			saveFileRisk[searchedIndex] += 2;
 			type("The gang brutally shot the Bank Manager and took the keycard", 30);
 			sleep(2s);
+			actions.push_back("kill");
 		}
 		else if (thisVariableDoesNotReallyMatterTooMuch == "hostage" || thisVariableDoesNotReallyMatterTooMuch == "Hostage" || thisVariableDoesNotReallyMatterTooMuch == "h") {
 			SetConsoleTextAttribute(hConsole, b);
@@ -198,6 +201,10 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			type("The gang ties the bank manager up and hide him in a corner", 30);
 			endl;
 			sleep(2s);
+			actions.push_back("hostage");
+		}
+		else {
+			goto ab;
 		}
 		cls;
 		sleep(2s);
@@ -247,7 +254,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		int beforeVlaue = saveFileLoyalty[searchedIndex];
 
-		saveFileLoyalty[searchedIndex] = typingGame("Guys! you need to hook me to up to one of the terminals to open the magnetic seal.", saveFileLoyalty, searchedIndex);
+		saveFileLoyalty[searchedIndex] = typingGame("Guys! you need to hook me up to one of the terminals to open the magnetic seal.", saveFileLoyalty, searchedIndex);
 
 		system("cls");
 		sleep(1s);
@@ -260,13 +267,49 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
 		sleep(1s);
 		endl;
+
+		abc:
 		system("cls");
 
+		type("The gang makes their way through the barage of cops to the computer terminal", 40);
+		sleep(1s);
+		elip;
+		endl;
 
+		type("They find the computer terminal and download your RAT", 40);
+		elip;
+		sleep(1.5s);
+		endl;
+
+		type("Which hack do you want to use?\n", 40);
+		SetConsoleTextAttribute(hConsole, r);
+		type("-short +2 Risk\n", 30);
+		SetConsoleTextAttribute(hConsole, b);
+		type("-long -1 Risk\n", 30);
+		SetConsoleTextAttribute(hConsole, w);
+
+		input;
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+
+		if (thisVariableDoesNotReallyMatterTooMuch == "short") {
+			// Shorter hack but more traceable
+			//  higher suspicion as a result
+			actions.push_back("short");
+		}
+		else if (thisVariableDoesNotReallyMatterTooMuch == "long") {
+			// Longer less traceable hack
+			// less suspicion as a result
+			actions.push_back("long");
+		}
+		else {
+			goto abc;
+		}
+		
 
 
 		system("PAUSE");
 		break; // end of case
+
 	} // End of switch statment
 
 	cout << "HEY THERE MAN !";
@@ -616,17 +659,19 @@ mainmenu:
 
 		break;
 	case 2:
-		// Lets call our C++ file called stats.cpp and pass the required variables and vectors
+		// Lets call our stats function and pass in the required arguements
 		stats(saveFileUsername, saveFileBalance, saveFileBudget, saveFileSuspicion, saveFileLoyalty, saveFileReputation, saveFileRisk, searchedIndex, saveFileHeister1, saveFileHeister2, saveFileHeister3, saveFileHeister4);
 		break;
 
 	case 3:
+		// credits
 		type("Programming - Ramzi Al Haddad", 30);
 		endl;
 		system("PAUSE");
 		break;
 
 	case 4:
+		// exit the program
 		exit(0);
 
 	default:
