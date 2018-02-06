@@ -73,6 +73,25 @@ void lose() {
 	}
 }
 
+void checkStats(std::vector <int> saveFileLoyalty, std::vector <int> saveFileRisk, std::vector <int> saveFileSuspicion, int searchedIndex) {
+	if (saveFileLoyalty[searchedIndex] <= 0) {
+		// Their Loyalty is too low, they have lost
+		type("Your Loyalty is too low, you have lost.", 20);
+		sleep(2s);
+		lose();
+	} if (saveFileRisk[searchedIndex] >= 100) {
+		// Their Risk is too high, they have lost
+		type("Your Risk is too high, you have lost.", 20);
+		sleep(2s);
+		lose();
+	} if (saveFileSuspicion[searchedIndex] >= 100) {
+		// Their Suspicion is too high, they have lost
+		type("Your Suspicion is too high, you have lost.", 20);
+		sleep(2s);
+		lose();
+	}
+}
+
 // This function takes care of the typing aspect of the 
 int typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex) {
 	string thisVariableDoesNotReallyMatterTooMuch;
@@ -100,6 +119,7 @@ int typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex
 
 
 // This is the First World Bank Heist
+// fwb also includes loud and stealth pathways
 void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalance, std::vector <int> saveFileBudget, std::vector <int> saveFileSuspicion, std::vector <int> saveFileLoyalty, std::vector <int> saveFileReputation, std::vector <int> saveFileRisk, int searchedIndex) {
 	system("cls");
 
@@ -137,6 +157,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 	case 1:
 		// If the user chose Loud
+		checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 		string thisVariableDoesNotReallyMatterTooMuch;
 		actions.push_back("loud");
 		system("cls");
@@ -162,6 +183,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		sleep(2s);
 		endl;
 		system("cls");
+		checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 
 		type("They search for the Bank Manager", 30);
 		lelip;
@@ -190,6 +212,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			type("The gang brutally shot the Bank Manager and took the keycard", 30);
 			sleep(2s);
 			actions.push_back("kill");
+			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 		}
 		else if (thisVariableDoesNotReallyMatterTooMuch == "hostage" || thisVariableDoesNotReallyMatterTooMuch == "Hostage" || thisVariableDoesNotReallyMatterTooMuch == "h") {
 			SetConsoleTextAttribute(hConsole, b);
@@ -202,10 +225,12 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			endl;
 			sleep(2s);
 			actions.push_back("hostage");
+			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 		}
 		else {
 			goto ab;
 		}
+		checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 		cls;
 		sleep(2s);
 		type("The gang searches the bank for the server room", 30);
@@ -237,6 +262,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			sleep(2s);
 			endl;
 			system("cls");
+			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 			
 		} // End random encounter
 
@@ -267,6 +293,8 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
 		sleep(1s);
 		endl;
+		system("cls");
+		checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 
 		abc:
 		system("cls");
@@ -295,11 +323,17 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			// Shorter hack but more traceable
 			//  higher suspicion as a result
 			actions.push_back("short");
+			type("You chose the less time consuming hack but as a consequence your risk increased", 30);
+			// increase risk
+			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 		}
 		else if (thisVariableDoesNotReallyMatterTooMuch == "long") {
 			// Longer less traceable hack
 			// less suspicion as a result
 			actions.push_back("long");
+			type("You chose the longer hack, as a result your risk decreased", 30);
+			// decrease risk
+			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 		}
 		else {
 			goto abc;
