@@ -37,21 +37,21 @@ std::vector <string> actions;
 int randomGenerator() {
 	srand(time(0));
 	return rand() % 2;
-}
+}// End of function
 
 // Function that handles bad points for loyalty
 int badPoint(std::vector <int> saveFileLoyalty, int searchedIndex, unsigned int amount) {
 
 	saveFileLoyalty[searchedIndex] -= amount;
 	return saveFileLoyalty[searchedIndex];
-}
+}// End of function
 
 // Function that handles good points for loyalty
 int goodPoint(std::vector <int> saveFileLoyalty, int searchedIndex, unsigned int amount) {
 
 	saveFileLoyalty[searchedIndex] += amount;
 	return saveFileLoyalty[searchedIndex];
-}
+}// End of function
 
 // This is to add a fancy touch to printing text to the console
 void type(const string& message, unsigned int timeBetweenEachLetter) {
@@ -60,7 +60,7 @@ void type(const string& message, unsigned int timeBetweenEachLetter) {
 		cout << c;
 		Sleep(timeBetweenEachLetter);
 	}
-}
+} // End of function
 
 // This is the lose function, it always repeats the statment
 void lose() {
@@ -70,11 +70,11 @@ void lose() {
 		type("Your Payday Gang lost faith in you, they all went to custody and police found you and now you are in jail", 100);
 		sleep(2s);
 		pause;
-	}
-}
+	} // End of for loop
+} // End of function
 
 void checkStats(std::vector <int> saveFileLoyalty, std::vector <int> saveFileRisk, std::vector <int> saveFileSuspicion, int searchedIndex) {
-	if (saveFileLoyalty[searchedIndex] <= 0) {
+	if (saveFileLoyalty[searchedIndex] < 0) {
 		// Their Loyalty is too low, they have lost
 		type("Your Loyalty is too low, you have lost.", 20);
 		sleep(2s);
@@ -90,14 +90,14 @@ void checkStats(std::vector <int> saveFileLoyalty, std::vector <int> saveFileRis
 		sleep(2s);
 		lose();
 	}
-}
+} // End of function
 
 // This function takes care of the typing aspect of the 
-int typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex) {
+int typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex, int amount) {
 	string thisVariableDoesNotReallyMatterTooMuch;
 	system("cls");
 	SetConsoleTextAttribute(hConsole, y);
-	type(text, 40);
+	type(text, 20);
 	SetConsoleTextAttribute(hConsole, w);
 	cout << "\n";
 	input;
@@ -105,14 +105,37 @@ int typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex
 	getline(cin, thisVariableDoesNotReallyMatterTooMuch);
 	if (thisVariableDoesNotReallyMatterTooMuch != text) {
 		if (saveFileLoyalty[searchedIndex] > 0) {
-			saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, 2);
+			saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, amount);
 		}
 	}
 	else {
-		saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, 2);
+		saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, amount);
 	}
-
 	cout << thisVariableDoesNotReallyMatterTooMuch;
+	endl;
+	sleep(3s);
+	return saveFileLoyalty[searchedIndex];
+} // End of function
+
+int typingGameNoIgnore(string text, std::vector <int> saveFileLoyalty, int searchedIndex, int amount) {
+	string thisVariableDoesNotReallyMatterTooMuch;
+	system("cls");
+	SetConsoleTextAttribute(hConsole, y);
+	type(text, 20);
+	SetConsoleTextAttribute(hConsole, w);
+	cout << "\n";
+	input;
+	getline(cin, thisVariableDoesNotReallyMatterTooMuch);
+	if (thisVariableDoesNotReallyMatterTooMuch != text) {
+		if (saveFileLoyalty[searchedIndex] > 0) {
+			saveFileLoyalty[searchedIndex] = badPoint(saveFileLoyalty, searchedIndex, amount);
+		}
+	}
+	else {
+		saveFileLoyalty[searchedIndex] = goodPoint(saveFileLoyalty, searchedIndex, amount);
+	}
+	cout << thisVariableDoesNotReallyMatterTooMuch;
+	endl;
 	sleep(3s);
 	return saveFileLoyalty[searchedIndex];
 } // End of function
@@ -173,7 +196,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		int beforeValue = saveFileLoyalty[searchedIndex];
 		
-		saveFileLoyalty[searchedIndex] = typingGame("Guys! find the bank manager and get his keycard. The drill and thermite is in the server room.", saveFileLoyalty, searchedIndex);
+		saveFileLoyalty[searchedIndex] = typingGame("Guys! find the bank manager and get his keycard. The drill and thermite is in the server room.", saveFileLoyalty, searchedIndex, 2);
 
 		system("cls");
 		sleep(1s);
@@ -248,7 +271,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			int beforeVlaue = saveFileLoyalty[searchedIndex];
 
 			// the typing thing
-			saveFileLoyalty[searchedIndex] = typingGame("Guys! you forgot the other canister of thermite go grab it!", saveFileLoyalty, searchedIndex);
+			saveFileLoyalty[searchedIndex] = typingGame("Guys! you forgot the other canister of thermite go grab it!", saveFileLoyalty, searchedIndex, 2);
 
 			system("cls");
 			sleep(1s);
@@ -280,7 +303,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		int beforeVlaue = saveFileLoyalty[searchedIndex];
 
-		saveFileLoyalty[searchedIndex] = typingGame("Guys! you need to hook me up to one of the terminals to open the magnetic seal.", saveFileLoyalty, searchedIndex);
+		saveFileLoyalty[searchedIndex] = typingGame("Guys! you need to hook me up to one of the terminals to open the magnetic seal.", saveFileLoyalty, searchedIndex, 2);
 
 		system("cls");
 		sleep(1s);
@@ -319,21 +342,82 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		input;
 		cin >> thisVariableDoesNotReallyMatterTooMuch;
 
+		beforeVlaue = saveFileLoyalty[searchedIndex];
+		int uselessIntVar = 0;
 		if (thisVariableDoesNotReallyMatterTooMuch == "short") {
 			// Shorter hack but more traceable
 			//  higher suspicion as a result
 			actions.push_back("short");
 			type("You chose the less time consuming hack but as a consequence your risk increased", 30);
-			// increase risk
+			sleep(2s);
+			endl;
+			saveFileRisk[searchedIndex] += 2;
 			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
+			type("Quick Type This!", 30);
+			sleep(1.5s);
+			// Now there is a short minigame that the user types lines of code
+
+			uselessIntVar += typingGame("struct group_info init_groups = { .usage = ATOMIC_INIT(2) };", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("ssh bain@fistworldbank bainistheman1978", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("upload 23487234787.py -firstworldbank", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("sudo python 23487234787.py", saveFileLoyalty, searchedIndex, 1);
+
+			saveFileLoyalty[searchedIndex] = int((uselessIntVar / 3));
+
+			system("cls");
+			sleep(1s);
+
+			calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+			type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+			sleep(1s);
+			endl;
+			system("cls");
+			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
+
 		}
 		else if (thisVariableDoesNotReallyMatterTooMuch == "long") {
 			// Longer less traceable hack
 			// less suspicion as a result
 			actions.push_back("long");
 			type("You chose the longer hack, as a result your risk decreased", 30);
-			// decrease risk
+			sleep(2s);
+			endl;
+			saveFileRisk[searchedIndex] -= 1;
 			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
+			type("Quick Type This!", 30);
+			sleep(1.5s);
+
+			// Now there is a longer minigame that the user types lines of code
+			
+			uselessIntVar += typingGame("struct group_info init_groups = { .usage = ATOMIC_INIT(2) };", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("struct group_info *groups_alloc(int gidsetsize){", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("struct group_info *group_info;", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("int nblocks;", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("int i;", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("nblocks = (gidsetsize + NGROUPS_PER_BLOCK - 1)/ NGROUPS_PER_BLOCK;", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("nblocks = nblocks ?:1;", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("group_info = kmalloc(sizeof(*group_info) + nblocks*sizeof(gid_t *), GFP_USER;", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("getLogFileName(std::string logType){", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("switch(this -> currentSubFilters[i]){", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("void decode_ethernet(const unsigned char*);", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("#include <sys/socket.h>", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("#include <fstream>", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("ifstream netMetasploitrEthnet = '0.sh'", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("ssh bain@firstworldbank bainistheman1978", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("./0.sh", saveFileLoyalty, searchedIndex, 1);
+
+			saveFileLoyalty[searchedIndex] = int((uselessIntVar / 5));
+
+			system("cls");
+			sleep(1s);
+
+			calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+			type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+			sleep(1s);
+			endl;
+			system("cls");
+			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
+			
 		}
 		else {
 			goto abc;
