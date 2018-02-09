@@ -34,9 +34,10 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 std::vector <string> actions;
 
 // Function to generate random 50 50 outcomes
-int randomGenerator() {
-	srand(time(0));
-	return rand() % 2;
+int randomGenerator(int amount) {
+	srand(time(NULL));
+	int randomNumber = rand() % amount;
+	return randomNumber;
 }// End of function
 
 // Function that handles bad points for loyalty
@@ -79,12 +80,12 @@ void checkStats(std::vector <int> saveFileLoyalty, std::vector <int> saveFileRis
 		type("Your Loyalty is too low, you have lost.", 20);
 		sleep(2s);
 		lose();
-	} if (saveFileRisk[searchedIndex] >= 100) {
+	} if (saveFileRisk[searchedIndex] >= 30) {
 		// Their Risk is too high, they have lost
 		type("Your Risk is too high, you have lost.", 20);
 		sleep(2s);
 		lose();
-	} if (saveFileSuspicion[searchedIndex] >= 100) {
+	} if (saveFileSuspicion[searchedIndex] >= 30) {
 		// Their Suspicion is too high, they have lost
 		type("Your Suspicion is too high, you have lost.", 20);
 		sleep(2s);
@@ -97,7 +98,7 @@ int typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex
 	string thisVariableDoesNotReallyMatterTooMuch;
 	system("cls");
 	SetConsoleTextAttribute(hConsole, y);
-	type(text, 20);
+	type(text, 10);
 	SetConsoleTextAttribute(hConsole, w);
 	cout << "\n";
 	input;
@@ -196,7 +197,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		int beforeValue = saveFileLoyalty[searchedIndex];
 		
-		saveFileLoyalty[searchedIndex] = typingGame("Guys! find the bank manager and get his keycard. The drill and thermite is in the server room.", saveFileLoyalty, searchedIndex, 2);
+		saveFileLoyalty[searchedIndex] = typingGame("Guys! find the bank manager and get his keycard. The drill and thermite is in the server room.", saveFileLoyalty, searchedIndex, 1);
 
 		system("cls");
 		sleep(1s);
@@ -262,23 +263,22 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		type("They find the server room and pick up the drill and thermite", 30);
 		sleep(2s);
 		endl;
+
+		meme:
 		// random chance of thermite not being taken
-		if (int(randomGenerator) == 1) {
+		if (int(randomGenerator(2)) == 1) {
 			type("They forgot to take the other canister of thermite", 30);
-			type("Type This!", 30);
-			sleep(2s);
+			endl;
+			type("Quick! Type This!", 30);
+			sleep(1s);
 
 			int beforeVlaue = saveFileLoyalty[searchedIndex];
 
 			// the typing thing
-			saveFileLoyalty[searchedIndex] = typingGame("Guys! you forgot the other canister of thermite go grab it!", saveFileLoyalty, searchedIndex, 2);
+			saveFileLoyalty[searchedIndex] = typingGame("Guys! you forgot the other canister of thermite go grab it!", saveFileLoyalty, searchedIndex, 1);
 
 			system("cls");
 			sleep(1s);
-			type("Calculating result, please wait", 40);
-			lelip;
-			endl;
-			sleep(2s);
 
 			int calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
 			type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
@@ -303,13 +303,9 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		int beforeVlaue = saveFileLoyalty[searchedIndex];
 
-		saveFileLoyalty[searchedIndex] = typingGame("Guys! you need to hook me up to one of the terminals to open the magnetic seal.", saveFileLoyalty, searchedIndex, 2);
+		saveFileLoyalty[searchedIndex] = typingGame("Guys! you need to hook me up to one of the terminals to open the magnetic seal.", saveFileLoyalty, searchedIndex, 1);
 
 		system("cls");
-		sleep(1s);
-		type("Calculating result, please wait", 40);
-		lelip;
-		endl;
 		sleep(1s);
 
 		calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
@@ -359,17 +355,21 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 			uselessIntVar += typingGame("struct group_info init_groups = { .usage = ATOMIC_INIT(2) };", saveFileLoyalty, searchedIndex, 1);
 			uselessIntVar += typingGameNoIgnore("ssh bain@fistworldbank bainistheman1978", saveFileLoyalty, searchedIndex, 1);
-			uselessIntVar += typingGameNoIgnore("upload 23487234787.py -firstworldbank", saveFileLoyalty, searchedIndex, 1);
-			uselessIntVar += typingGameNoIgnore("sudo python 23487234787.py", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("upload 5267.py -firstworldbank", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("sudo python 5267.py", saveFileLoyalty, searchedIndex, 1);
 
-			saveFileLoyalty[searchedIndex] = int((uselessIntVar / 3));
+			saveFileLoyalty[searchedIndex] = int((uselessIntVar / 6));
 
 			system("cls");
 			sleep(1s);
 
 			calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
 			type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
-			sleep(1s);
+			cout << calculatedResult;
+			endl;
+			cout << uselessIntVar;
+			endl;
+			sleep(3s);
 			endl;
 			system("cls");
 			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
@@ -422,6 +422,14 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		else {
 			goto abc;
 		}
+
+		clear;
+		type("Your hack has been uploaded", 40);
+		lelip;
+		sleep(1s);
+		type("The cops have paused your progress!", 40);
+		sleep(2s);
+		
 		
 
 
