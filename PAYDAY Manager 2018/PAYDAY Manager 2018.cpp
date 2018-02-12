@@ -38,21 +38,21 @@ int randomGenerator(int amount) {
 	srand(time(NULL));
 	int randomNumber = rand() % amount;
 	return randomNumber;
-}// End of function
+}
 
 // Function that handles bad points for loyalty
 int badPoint(std::vector <int> saveFileLoyalty, int searchedIndex, unsigned int amount) {
 
 	saveFileLoyalty[searchedIndex] -= amount;
 	return saveFileLoyalty[searchedIndex];
-}// End of function
+}
 
 // Function that handles good points for loyalty
 int goodPoint(std::vector <int> saveFileLoyalty, int searchedIndex, unsigned int amount) {
 
 	saveFileLoyalty[searchedIndex] += amount;
 	return saveFileLoyalty[searchedIndex];
-}// End of function
+}
 
 // This is to add a fancy touch to printing text to the console
 void type(const string& message, unsigned int timeBetweenEachLetter) {
@@ -61,7 +61,7 @@ void type(const string& message, unsigned int timeBetweenEachLetter) {
 		cout << c;
 		Sleep(timeBetweenEachLetter);
 	}
-} // End of function
+}
 
 // This is the lose function, it always repeats the statment
 void lose() {
@@ -145,6 +145,11 @@ int typingGameNoIgnore(string text, std::vector <int> saveFileLoyalty, int searc
 // This is the First World Bank Heist
 // fwb also includes loud and stealth pathways
 void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalance, std::vector <int> saveFileBudget, std::vector <int> saveFileSuspicion, std::vector <int> saveFileLoyalty, std::vector <int> saveFileReputation, std::vector <int> saveFileRisk, int searchedIndex) {
+	
+	// This is an array that records all the downs of each Heister
+	// The members in the array are cooresponding to the heister 1, 2, 3, 4
+	int heisterDowns[4] = { 3, 3, 3, 3 };
+	
 	system("cls");
 
 	type("You send the Payday Gang to the bank...\n", 30);
@@ -269,13 +274,14 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		if (int(randomGenerator(2)) == 1) {
 			type("They forgot to take the other canister of thermite", 30);
 			endl;
+			sleep(2s);
 			type("Quick! Type This!", 30);
 			sleep(1s);
 
 			int beforeVlaue = saveFileLoyalty[searchedIndex];
 
 			// the typing thing
-			saveFileLoyalty[searchedIndex] = typingGame("Guys! you forgot the other canister of thermite go grab it!", saveFileLoyalty, searchedIndex, 1);
+			saveFileLoyalty[searchedIndex] = typingGameNoIgnore("Guys! you forgot the other canister of thermite go grab it!", saveFileLoyalty, searchedIndex, 1);
 
 			system("cls");
 			sleep(1s);
@@ -426,11 +432,16 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		clear;
 		type("Your hack has been uploaded", 40);
 		lelip;
+		endl;
 		sleep(1s);
 		type("The cops have paused your progress!", 40);
 		sleep(2s);
-		
-		
+		endl;
+		type("The gang rush to the computer and proceed to enable your hack \n", 40);
+		sleep(2s);
+		endl;
+
+		// Generate a random down and continue the detour
 
 
 		system("PAUSE");
