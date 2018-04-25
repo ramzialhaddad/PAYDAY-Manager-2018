@@ -271,7 +271,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		meme:
 		// random chance of thermite not being taken
-		if (int(randomGenerator(2)) == 1) {
+		if (randomGenerator(2)) {
 			type("They forgot to take the other canister of thermite", 30);
 			endl;
 			sleep(2s);
@@ -360,9 +360,17 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			// Now there is a short minigame that the user types lines of code
 
 			uselessIntVar += typingGame("struct group_info init_groups = { .usage = ATOMIC_INIT(2) };", saveFileLoyalty, searchedIndex, 1);
-			uselessIntVar += typingGameNoIgnore("ssh bain@fistworldbank bainistheman1978", saveFileLoyalty, searchedIndex, 1);
+			cout << uselessIntVar;
+			endl;
+			uselessIntVar += typingGameNoIgnore("ssh bain@firstworldbank bainistheman1978", saveFileLoyalty, searchedIndex, 1);
+			cout << uselessIntVar;
+			endl;
 			uselessIntVar += typingGameNoIgnore("upload 5267.py -firstworldbank", saveFileLoyalty, searchedIndex, 1);
+			cout << uselessIntVar;
+			endl;
 			uselessIntVar += typingGameNoIgnore("sudo python 5267.py", saveFileLoyalty, searchedIndex, 1);
+			cout << uselessIntVar;
+			endl;
 
 			saveFileLoyalty[searchedIndex] = int((uselessIntVar / 6));
 
@@ -444,7 +452,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		// Generate a random down and continue the detour
 
 
-		system("PAUSE");
+		pause;
 		break; // end of case
 
 	} // End of switch statment
@@ -468,7 +476,7 @@ heistoptions:
 	
 	default:
 		cout << "Sorry, didn't quite get that!\n";
-		system("PAUSE");
+		pause;
 		goto heistoptions;
 	}
 }
@@ -499,7 +507,7 @@ crimenet:
 	case 2:
 		cout << "Which heisters do you want to change?\n";
 		cout << "Your current heisters are:\n";
-		system("PAUSE");
+		pause;
 		break;
 
 	case 3:
@@ -507,13 +515,13 @@ crimenet:
 		message = string("Your budget is ") + to_string(saveFileBudget[searchedIndex]);
 		type(message, 40);
 		endl;
-		system("PAUSE");
+		pause;
 		break;
 
 	default:
 		cls;
 		cout << "Sorry, didn't get that!\n";
-		Sleep(1);
+		pause;
 		goto crimenet;
 	}
 
@@ -584,7 +592,7 @@ int stats(std::vector <string> saveFileUsername, std::vector <int> saveFileBalan
 	endl;
 	Sleep(2000);
 
-	system("PAUSE");
+	pause;
 
 	return 0;
 }
@@ -713,7 +721,7 @@ int main()
 	endl;
 	SetConsoleTextAttribute(hConsole, w);
 
-	system("PAUSE");
+	pause;
 	system("cls");
 
 	// a GoTo Loop thing so we can always refer back to it
@@ -778,7 +786,7 @@ mainmenu:
 			endl;
 			cout << "Welcome, " << username << ".\n";
 
-			system("PAUSE");
+			pause;
 			
 			// This user seems legit lets log him in to crimenet, hopefully he didn't just take one of the usernames in the "SUPER SECURE" CSV file xD
 			crimenet(saveFileUsername, saveFileBalance, saveFileBudget, saveFileSuspicion, saveFileLoyalty, saveFileReputation, saveFileRisk, searchedIndex, saveFileHeister1, saveFileHeister2, saveFileHeister3, saveFileHeister4);
@@ -804,7 +812,7 @@ mainmenu:
 		// credits
 		type("Programming - Ramzi Al Haddad", 30);
 		endl;
-		system("PAUSE");
+		pause;
 		break;
 
 	case 4:
