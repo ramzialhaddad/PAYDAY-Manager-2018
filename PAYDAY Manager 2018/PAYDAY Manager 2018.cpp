@@ -2,6 +2,13 @@
 // save file format no spaces: Username(string), Balance(int), Budget(int), SuspicionLevel(int), Loyalty(int),
 // Reputation(int), Risk(int), Heister1(string), Heister2(string), Heister3(string), Heister4(string)
 
+/*
+	TODO: 
+		- Line 456, finish the thing.
+		- Finish the parts after
+
+*/
+
 #include "stdafx.h"
 
 
@@ -144,7 +151,7 @@ int typingGameNoIgnore(string text, std::vector <int> saveFileLoyalty, int searc
 
 // This is the First World Bank Heist
 // fwb also includes loud and stealth pathways
-void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalance, std::vector <int> saveFileBudget, std::vector <int> saveFileSuspicion, std::vector <int> saveFileLoyalty, std::vector <int> saveFileReputation, std::vector <int> saveFileRisk, int searchedIndex) {
+void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalance, std::vector <int> saveFileBudget, std::vector <int> saveFileSuspicion, std::vector <int> saveFileLoyalty, std::vector <int> saveFileReputation, std::vector <int> saveFileRisk, int searchedIndex, std::vector <string> saveFileHeister1, std::vector <string> saveFileHeister2, std::vector <string> saveFileHeister3, std::vector <string> saveFileHeister4) {
 	
 	// This is an array that records all the downs of each Heister
 	// The members in the array are cooresponding to the heister 1, 2, 3, 4
@@ -450,7 +457,37 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		endl;
 
 		// Generate a random down and continue the detour
+		if (randomGenerator(2)) {
+			uselessIntVar = randomGenerator(4);
 
+			if (uselessIntVar == 0) {
+				type(saveFileHeister1[searchedIndex], 40);
+				type("got downed!", 40);
+				endl;
+				// Continue
+			}
+			else if (uselessIntVar == 1) {
+				type(saveFileHeister2[searchedIndex], 40);
+				type("got downed!", 40);
+				endl;
+				// Continue
+			}
+			else if (uselessIntVar == 2) {
+				type(saveFileHeister3[searchedIndex], 40);
+				type("got downed!", 40);
+				endl;
+				// Continue
+			}
+			else if (uselessIntVar == 3) {
+				type(saveFileHeister4[searchedIndex], 40);
+				type("got downed!", 40);
+				endl;
+				// Continue
+			} // End of random stop
+
+
+
+		}
 
 		pause;
 		break; // end of case
@@ -463,7 +500,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 } // End of Function
 
 //menu for heists
-void heistoptions(std::vector <string> saveFileUsername, std::vector <int> saveFileBalance, std::vector <int> saveFileBudget, std::vector <int> saveFileSuspicion, std::vector <int> saveFileLoyalty, std::vector <int> saveFileReputation, std::vector <int> saveFileRisk, int searchedIndex)
+void heistoptions(std::vector <string> saveFileUsername, std::vector <int> saveFileBalance, std::vector <int> saveFileBudget, std::vector <int> saveFileSuspicion, std::vector <int> saveFileLoyalty, std::vector <int> saveFileReputation, std::vector <int> saveFileRisk, int searchedIndex, std::vector <string> saveFileHeister1, std::vector <string> saveFileHeister2, std::vector <string> saveFileHeister3, std::vector <string> saveFileHeister4)
 {
 heistoptions:
 	cout << "1. First World Bank\n";
@@ -471,7 +508,7 @@ heistoptions:
 	switch (option) {
 	case 1:
 		system("cls");
-		fwb(saveFileUsername, saveFileBalance, saveFileBudget, saveFileSuspicion, saveFileLoyalty, saveFileReputation, saveFileRisk, searchedIndex);
+		fwb(saveFileUsername, saveFileBalance, saveFileBudget, saveFileSuspicion, saveFileLoyalty, saveFileReputation, saveFileRisk, searchedIndex, saveFileHeister1, saveFileHeister2, saveFileHeister3, saveFileHeister4);
 		break;
 	
 	default:
@@ -502,7 +539,7 @@ crimenet:
 	switch (option) {
 	case 1:
 		cout << "What heist would you like to do?\n";
-		heistoptions(saveFileUsername, saveFileBalance, saveFileBudget, saveFileSuspicion, saveFileLoyalty, saveFileReputation, saveFileRisk, searchedIndex); //calling the menu function
+		heistoptions(saveFileUsername, saveFileBalance, saveFileBudget, saveFileSuspicion, saveFileLoyalty, saveFileReputation, saveFileRisk, searchedIndex, saveFileHeister1, saveFileHeister2, saveFileHeister3, saveFileHeister4); //calling the menu function
 		break;
 	case 2:
 		cout << "Which heisters do you want to change?\n";
