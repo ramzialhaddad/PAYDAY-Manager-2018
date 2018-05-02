@@ -332,7 +332,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		system("cls");
 
 		type("The gang makes their way through the barage of cops to the computer terminal", 40);
-		sleep(1s);
+		sleep(2s);
 		elip;
 		endl;
 
@@ -449,6 +449,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		lelip;
 		endl;
 		sleep(1s);
+		cls;
 		type("The cops have paused your progress!", 40);
 		sleep(2s);
 		endl;
@@ -485,7 +486,15 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 				// Continue
 			} // End of random stop
 
+			cls;
+			sleep(2s);
 
+			type("The Gang reaches the computer and attempt to reconnect to your VPS", 40);
+			lelip;
+			endl;
+
+			//Either open new port (long, lower risk)
+			//Use same port (short, higher risk)
 
 		}
 
