@@ -3,9 +3,44 @@
 // Reputation(int), Risk(int), Heister1(string), Heister2(string), Heister3(string), Heister4(string)
 
 /*
-	TODO: 
-		- Line 456, finish the thing.
-		- Finish the parts after
+	Storyline of Heists:
+
+	---------------------------------------------------------------------------------------------------------
+		First World Bank:
+		Loud-
+
+		Enter the bank
+
+		Find the bank manager
+		-kill or hostage | +2 -1
+
+		Server room
+		-chance of not picking up an extra can of thermite
+
+		Vault area
+		-start drilling
+
+		Computer Terminal Hack
+		-long or short | +2 -1
+
+		Cops stopped progress
+		-the gang goes to the computer with a random chance of random heister to go down
+		-you send a small radio distraction for the cops
+
+		The gang attempts to connect to VPS
+		-random chance (25%) and current risk/suspicion divided by 30,  of alert if police are tracking you
+		-new port or old port | -1 +2 if police tracked before +5
+		-type some random gibberish
+
+		Hack resumed
+
+		-random chance of police tracking you
+
+		Gate opens and Hack is completed, the magnetic seal is switched off
+
+
+		The gang enters the vault hall
+		---------------------------------------------------------------------------------------------------------
 
 */
 
@@ -40,7 +75,7 @@ int y = 14;
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 std::vector <string> actions;
 
-// Function to generate random 50 50 outcomes
+// Function to generate random outcomes
 int randomGenerator(int amount) {
 	srand(time(NULL));
 	int randomNumber = rand() % amount;
@@ -288,16 +323,16 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			int beforeVlaue = saveFileLoyalty[searchedIndex];
 
 			// the typing thing
-			saveFileLoyalty[searchedIndex] = typingGameNoIgnore("Guys! you forgot the other canister of thermite go grab it!", saveFileLoyalty, searchedIndex, 1);
+			saveFileLoyalty[searchedIndex] = typingGame("Guys! you forgot the other canister of thermite go grab it!", saveFileLoyalty, searchedIndex, 1);
 
-			system("cls");
+			cls;
 			sleep(1s);
 
 			int calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
 			type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
 			sleep(2s);
 			endl;
-			system("cls");
+			cls;
 			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 			
 		} // End random encounter
@@ -366,7 +401,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			sleep(1.5s);
 			// Now there is a short minigame that the user types lines of code
 
-			uselessIntVar += typingGame("struct group_info init_groups = { .usage = ATOMIC_INIT(2) };", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("struct group_info init_groups = { .usage = ATOMIC_INIT(2) };", saveFileLoyalty, searchedIndex, 1);
 			cout << uselessIntVar;
 			endl;
 			uselessIntVar += typingGameNoIgnore("ssh bain@firstworldbank bainistheman1978", saveFileLoyalty, searchedIndex, 1);
@@ -410,7 +445,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 			// Now there is a longer minigame that the user types lines of code
 			
-			uselessIntVar += typingGame("struct group_info init_groups = { .usage = ATOMIC_INIT(2) };", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("struct group_info init_groups = { .usage = ATOMIC_INIT(2) };", saveFileLoyalty, searchedIndex, 1);
 			uselessIntVar += typingGameNoIgnore("struct group_info *groups_alloc(int gidsetsize){", saveFileLoyalty, searchedIndex, 1);
 			uselessIntVar += typingGameNoIgnore("struct group_info *group_info;", saveFileLoyalty, searchedIndex, 1);
 			uselessIntVar += typingGameNoIgnore("int nblocks;", saveFileLoyalty, searchedIndex, 1);
@@ -429,14 +464,14 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 			saveFileLoyalty[searchedIndex] = int((uselessIntVar / 5));
 
-			system("cls");
+			cls;
 			sleep(1s);
 
 			calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
 			type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
 			sleep(1s);
 			endl;
-			system("cls");
+			cls;
 			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 			
 		}
@@ -492,6 +527,37 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			type("The Gang reaches the computer and attempt to reconnect to your VPS", 40);
 			lelip;
 			endl;
+
+			if ((0.25 + saveFileSuspicion[searchedIndex] / 30)) {
+				int beforeValue = saveFileLoyalty[searchedIndex];
+				cls;
+				type("The Cops are Tracking You!!!", 40);
+				endl;
+				sleep(1s);
+				
+				uselessIntVar = 0;
+
+				uselessIntVar += typingGameNoIgnore("sudo ./openvpn", saveFileLoyalty, searchedIndex, 1);
+				uselessIntVar += typingGameNoIgnore("i = switchIPDNS ` ` `  0.0.0.0, 127.0.0.1", saveFileLoyalty, searchedIndex, 1);
+				uselessIntVar += typingGameNoIgnore("i.save('/')", saveFileLoyalty, searchedIndex, 1);
+				uselessIntVar += typingGameNoIgnore("exit", saveFileLoyalty, searchedIndex, 1);
+				uselessIntVar += typingGameNoIgnore("exec openvpn -config -i.cfg", saveFileLoyalty, searchedIndex, 1);
+				uselessIntVar += typingGameNoIgnore("sudo ./cleanup", saveFileLoyalty, searchedIndex, 1);
+
+				saveFileLoyalty[searchedIndex] = int((uselessIntVar / 2));
+
+				cls;
+				sleep(1s);
+
+				calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+				type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+				sleep(1s);
+				endl;
+				cls;
+				checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
+
+			} // End of Random Encounter
+
 
 			//Either open new port (long, lower risk)
 			//Use same port (short, higher risk)
