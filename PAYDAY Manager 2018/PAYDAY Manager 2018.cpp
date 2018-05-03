@@ -3,6 +3,16 @@
 // Reputation(int), Risk(int), Heister1(string), Heister2(string), Heister3(string), Heister4(string)
 
 /*
+
+	TODO:
+
+	- Add functions for colours of console
+	- Add more content
+	- Possibly remove cls; and replace with function that actually prints out the Press any key to continue . . .
+
+*/
+
+/*
 	Storyline of Heists:
 
 	---------------------------------------------------------------------------------------------------------
