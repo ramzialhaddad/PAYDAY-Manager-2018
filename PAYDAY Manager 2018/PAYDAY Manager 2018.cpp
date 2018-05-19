@@ -12,48 +12,6 @@
 
 */
 
-/*
-	Storyline of Heists:
-
-	---------------------------------------------------------------------------------------------------------
-		First World Bank:
-		Loud-
-
-		Enter the bank
-
-		Find the bank manager
-		-kill or hostage | +2 -1
-
-		Server room
-		-chance of not picking up an extra can of thermite
-
-		Vault area
-		-start drilling
-
-		Computer Terminal Hack
-		-long or short | +2 -1
-
-		Cops stopped progress
-		-the gang goes to the computer with a random chance of random heister to go down
-		-you send a small radio distraction for the cops
-
-		The gang attempts to connect to VPS
-		-random chance (25%) and current risk/suspicion divided by 30,  of alert if police are tracking you
-		-new port or old port | -1 +2 if police tracked before +5
-		-type some random gibberish
-
-		Hack resumed
-
-		-random chance of police tracking you
-
-		Gate opens and Hack is completed, the magnetic seal is switched off
-
-
-		The gang enters the vault hall
-		---------------------------------------------------------------------------------------------------------
-
-*/
-
 #include "stdafx.h"
 
 
@@ -243,6 +201,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		actions.push_back("loud");
 		system("cls");
 		PlaySound(TEXT("music.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		// ~ 1
 		cout << "Your Gang reached the Bank with cops alerted and launching an assault soon!\n";
 		lelip;
 		endl;
@@ -254,6 +213,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		int beforeValue = saveFileLoyalty[searchedIndex];
 		
+		// ~ 2
 		saveFileLoyalty[searchedIndex] = typingGame("Guys! find the bank manager and get his keycard. The drill and thermite is in the server room.", saveFileLoyalty, searchedIndex, 1);
 
 		system("cls");
@@ -283,6 +243,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		input;
 		cin >> thisVariableDoesNotReallyMatterTooMuch;
 
+		// ~ 2.1
 		if (thisVariableDoesNotReallyMatterTooMuch == "kill" || thisVariableDoesNotReallyMatterTooMuch == "Kill" || thisVariableDoesNotReallyMatterTooMuch == "k") {
 			SetConsoleTextAttribute(hConsole, r);
 			type("Risk increased by 2", 40);
@@ -311,6 +272,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		else {
 			goto ab;
 		}
+		// ~ 3
 		checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 		cls;
 		sleep(2s);
@@ -323,6 +285,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		meme:
 		// random chance of thermite not being taken
+		// ~ 3.1
 		if (randomGenerator(2)) {
 			type("They forgot to take the other canister of thermite", 30);
 			endl;
@@ -347,11 +310,12 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			
 		} // End random encounter
 
+		// ~ 4
 		type("The gang makes their way to the entrance of the vault area", 40);
 		lelip;
 		endl;
 		sleep(2s);
-		type("They place the thermal drill and start drilling", 40);
+		type("They place the thermal drill and start drilling", 40); // ~ 4.1
 		lelip;
 		endl;
 		sleep(2s);
@@ -360,7 +324,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		system("cls");
 
 		int beforeVlaue = saveFileLoyalty[searchedIndex];
-
+		// ~ 5
 		saveFileLoyalty[searchedIndex] = typingGame("Guys! you need to hook me up to one of the terminals to open the magnetic seal.", saveFileLoyalty, searchedIndex, 1);
 
 		system("cls");
@@ -386,6 +350,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		sleep(1.5s);
 		endl;
 
+		// ~ 5.1
 		type("Which hack do you want to use?\n", 40);
 		SetConsoleTextAttribute(hConsole, r);
 		type("-short +2 Risk\n", 30);
@@ -493,8 +458,9 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		type("Your hack has been uploaded", 40);
 		lelip;
 		endl;
-		sleep(1s);
+		sleep(3s);
 		cls;
+		// ~ 6
 		type("The cops have paused your progress!", 40);
 		sleep(2s);
 		endl;
@@ -502,6 +468,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		sleep(2s);
 		endl;
 
+		// ~ 6.1
 		// Generate a random down and continue the detour
 		if (randomGenerator(2)) {
 			uselessIntVar = randomGenerator(4);
@@ -538,6 +505,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			lelip;
 			endl;
 
+			// Random Encounter
 			if ((0.25 + saveFileSuspicion[searchedIndex] / 30)) {
 				int beforeValue = saveFileLoyalty[searchedIndex];
 				cls;

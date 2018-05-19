@@ -1,0 +1,36 @@
+Storyline of Heists:
+
+	First World Bank:
+	Loud:-
+
+	1:	Enter the bank
+
+	2:	Find the bank manager
+		2.1	-kill or hostage | +2 -1
+
+	3:	Server room
+		3.1 -chance of not picking up an extra can of thermite
+
+	4:	Vault area
+		4.1 -start drilling
+
+	5:	Computer Terminal Hack
+		5.1 -long or short | +2 -1
+
+	6:	Cops stopped progress
+		6.1 -the gang goes to the computer with a random chance of random heister to go down
+		6.2 -you send a small radio distraction for the cops
+
+	7:	The gang attempts to connect to VPS
+		7.1 -random chance (25%) and current risk/suspicion divided by 30,  of alert if police are tracking you
+		7.2 -new port or old port | -1 +2 if police tracked before +5
+		7.3 -type some random gibberish
+
+	8:	Hack resumed
+
+		8.1 -random chance of police tracking you
+
+	9:	Gate opens and Hack is completed, the magnetic seal is switched off
+
+
+	10:	The gang enters the vault hall
