@@ -36,12 +36,17 @@ using namespace std;
 int option;
 int loudOrStealth;
 //misc variables
-int b = 11;
-int w = 15;
-int r = 12;
-int y = 14;
+int blue = 11;
+int white = 15;
+int red = 12;
+int yellow = 14;
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 std::vector <string> actions;
+
+// This is a funtion to easily change the text colour of the console/terminal/cmd
+int changeToColour(int colour){
+	SetConsoleTextAttribute(hConsole, colour);
+}
 
 // Function to generate random outcomes
 int randomGenerator(int amount) {
@@ -107,9 +112,9 @@ void checkStats(std::vector <int> saveFileLoyalty, std::vector <int> saveFileRis
 int typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex, int amount) {
 	string thisVariableDoesNotReallyMatterTooMuch;
 	system("cls");
-	SetConsoleTextAttribute(hConsole, y);
+	SetConsoleTextAttribute(hConsole, yellow);
 	type(text, 10);
-	SetConsoleTextAttribute(hConsole, w);
+	SetConsoleTextAttribute(hConsole, white);
 	cout << "\n";
 	input;
 	cin.ignore();
@@ -131,9 +136,9 @@ int typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex
 int typingGameNoIgnore(string text, std::vector <int> saveFileLoyalty, int searchedIndex, int amount) {
 	string thisVariableDoesNotReallyMatterTooMuch;
 	system("cls");
-	SetConsoleTextAttribute(hConsole, y);
+	SetConsoleTextAttribute(hConsole, yellow);
 	type(text, 20);
-	SetConsoleTextAttribute(hConsole, w);
+	SetConsoleTextAttribute(hConsole, white);
 	cout << "\n";
 	input;
 	getline(cin, thisVariableDoesNotReallyMatterTooMuch);
@@ -151,12 +156,44 @@ int typingGameNoIgnore(string text, std::vector <int> saveFileLoyalty, int searc
 	return saveFileLoyalty[searchedIndex];
 } // End of function
 
+// Define searchArray and stolen from my own code
+//https://github.com/ramzialhaddadtm/PracticalCplusplusAndPythonTutorial/blob/master/Banking%20Program/C%2B%2B/Banking%20Program.cpp
+int searchArray(int ArrayPassed[], int whatYouNeedToBeSearched, int length) {
+	//Define some variables
+	int i = 0;
+	int searchedIndex = 0;
+	bool valueFound;
+
+	for (i = -1; (i < length) && !valueFound;) {
+		//Just for debugging/demonstration purposes
+		//cout << i << endl;
+		ArrayPassed[i];
+
+		if (whatYouNeedToBeSearched == ArrayPassed[i]) {
+			searchedIndex = i;
+			valueFound = true;
+		}
+		i++;
+	}
+
+	if (valueFound) {
+		return searchedIndex;
+	}
+	else {
+		return -1;
+	}
+}
+
 
 // This is the First World Bank Heist
 // fwb also includes loud and stealth pathways
 void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalance, std::vector <int> saveFileBudget, std::vector <int> saveFileSuspicion, std::vector <int> saveFileLoyalty, std::vector <int> saveFileReputation, std::vector <int> saveFileRisk, int searchedIndex, std::vector <string> saveFileHeister1, std::vector <string> saveFileHeister2, std::vector <string> saveFileHeister3, std::vector <string> saveFileHeister4) {
-	
-	// This is an array that records all the downs of each Heister
+	// This records all the significant events during the heist, to be used in extra 
+	//events and also to be used in calculations for if an event should be harder or easier on the player
+	vector <string> events;
+
+
+	// This is an array that records all the remaining downs of each Heister
 	// The members in the array are cooresponding to the heister 1, 2, 3, 4
 	int heisterDowns[4] = { 3, 3, 3, 3 };
 	
@@ -235,19 +272,19 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		type("They found the Bank Manager, should they kill him or take him as a hostage?", 40);
 		sleep(2s);
 		endl;
-		SetConsoleTextAttribute(hConsole, r);
+		SetConsoleTextAttribute(hConsole, red);
 		type("-kill +2 Risk\n", 30);
-		SetConsoleTextAttribute(hConsole, b);
+		SetConsoleTextAttribute(hConsole, blue);
 		type("-hostage -1 Risk\n", 30);
-		SetConsoleTextAttribute(hConsole, w);
+		SetConsoleTextAttribute(hConsole, white);
 		input;
 		cin >> thisVariableDoesNotReallyMatterTooMuch;
 
 		// ~ 2.1
 		if (thisVariableDoesNotReallyMatterTooMuch == "kill" || thisVariableDoesNotReallyMatterTooMuch == "Kill" || thisVariableDoesNotReallyMatterTooMuch == "k") {
-			SetConsoleTextAttribute(hConsole, r);
+			SetConsoleTextAttribute(hConsole, red);
 			type("Risk increased by 2", 40);
-			SetConsoleTextAttribute(hConsole, w);
+			SetConsoleTextAttribute(hConsole, white);
 			sleep(1s);
 			endl;
 			saveFileRisk[searchedIndex] += 2;
@@ -257,9 +294,9 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 		}
 		else if (thisVariableDoesNotReallyMatterTooMuch == "hostage" || thisVariableDoesNotReallyMatterTooMuch == "Hostage" || thisVariableDoesNotReallyMatterTooMuch == "h") {
-			SetConsoleTextAttribute(hConsole, b);
+			SetConsoleTextAttribute(hConsole, blue);
 			type("Risk decreased by 1", 30);
-			SetConsoleTextAttribute(hConsole, w);
+			SetConsoleTextAttribute(hConsole, white);
 			sleep(1s);
 			endl;
 			saveFileRisk[searchedIndex] -= 1;
@@ -325,7 +362,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		int beforeVlaue = saveFileLoyalty[searchedIndex];
 		// ~ 5
-		saveFileLoyalty[searchedIndex] = typingGame("Guys! you need to hook me up to one of the terminals to open the magnetic seal.", saveFileLoyalty, searchedIndex, 1);
+		saveFileLoyalty[searchedIndex] = typingGameNoIgnore("Guys! you need to hook me up to one of the terminals to open the magnetic seal.", saveFileLoyalty, searchedIndex, 1);
 
 		system("cls");
 		sleep(1s);
@@ -352,11 +389,11 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		// ~ 5.1
 		type("Which hack do you want to use?\n", 40);
-		SetConsoleTextAttribute(hConsole, r);
+		SetConsoleTextAttribute(hConsole, red);
 		type("-short +2 Risk\n", 30);
-		SetConsoleTextAttribute(hConsole, b);
+		SetConsoleTextAttribute(hConsole, blue);
 		type("-long -1 Risk\n", 30);
-		SetConsoleTextAttribute(hConsole, w);
+		SetConsoleTextAttribute(hConsole, white);
 
 		input;
 		cin >> thisVariableDoesNotReallyMatterTooMuch;
@@ -376,7 +413,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			sleep(1.5s);
 			// Now there is a short minigame that the user types lines of code
 
-			uselessIntVar += typingGameNoIgnore("struct group_info init_groups = { .usage = ATOMIC_INIT(2) };", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGame("struct group_info init_groups = { .usage = ATOMIC_INIT(2) };", saveFileLoyalty, searchedIndex, 1);
 			cout << uselessIntVar;
 			endl;
 			uselessIntVar += typingGameNoIgnore("ssh bain@firstworldbank bainistheman1978", saveFileLoyalty, searchedIndex, 1);
@@ -475,25 +512,25 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 			if (uselessIntVar == 0) {
 				type(saveFileHeister1[searchedIndex], 40);
-				type("got downed!", 40);
+				type(" got downed!", 40);
 				endl;
 				// Continue
 			}
 			else if (uselessIntVar == 1) {
 				type(saveFileHeister2[searchedIndex], 40);
-				type("got downed!", 40);
+				type(" got downed!", 40);
 				endl;
 				// Continue
 			}
 			else if (uselessIntVar == 2) {
 				type(saveFileHeister3[searchedIndex], 40);
-				type("got downed!", 40);
+				type(" got downed!", 40);
 				endl;
 				// Continue
 			}
 			else if (uselessIntVar == 3) {
 				type(saveFileHeister4[searchedIndex], 40);
-				type("got downed!", 40);
+				type(" got downed!", 40);
 				endl;
 				// Continue
 			} // End of random stop
@@ -506,6 +543,8 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			endl;
 
 			// Random Encounter
+			type(saveFileSuspicion,  40);
+			pause;
 			if ((0.25 + saveFileSuspicion[searchedIndex] / 30)) {
 				int beforeValue = saveFileLoyalty[searchedIndex];
 				cls;
@@ -542,6 +581,8 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		}
 
+		PlaySound(TEXT("music.wav"), NULL, SND_APPLICATION);
+		type("End of the line buddy", 50);
 		pause;
 		break; // end of case
 
@@ -579,9 +620,9 @@ crimenet:
 	system("cls");
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	type("Welcome to ", 150);
-	SetConsoleTextAttribute(hConsole, b);
+	SetConsoleTextAttribute(hConsole, blue);
 	type("Crime.net\n", 60);
-	SetConsoleTextAttribute(hConsole, w);
+	SetConsoleTextAttribute(hConsole, white);
 	sleep(2s);
 	cout << "What would you like to do?\n";
 	cout << "1. Plan a heist\n";
@@ -806,10 +847,10 @@ int main()
 	int b = 11;
 	int w = 15;
 	cout << "PAYDAY: ";
-	SetConsoleTextAttribute(hConsole, r);
+	SetConsoleTextAttribute(hConsole, red);
 	cout << "Manager 2018";
 	endl;
-	SetConsoleTextAttribute(hConsole, w);
+	SetConsoleTextAttribute(hConsole, white);
 
 	pause;
 	system("cls");
@@ -827,9 +868,9 @@ mainmenu:
 	switch (option)
 	{
 	case 1:
-		SetConsoleTextAttribute(hConsole, b);
+		SetConsoleTextAttribute(hConsole, blue);
 		cout << "Crime.net\n";
-		SetConsoleTextAttribute(hConsole, w);
+		SetConsoleTextAttribute(hConsole, white);
 		cout << "Please login.\n";
 
 		cout << "Username: ";
