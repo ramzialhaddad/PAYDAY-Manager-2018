@@ -111,7 +111,7 @@ void checkStats(std::vector <int> saveFileLoyalty, std::vector <int> saveFileRis
 // This function takes care of the typing aspect of the 
 int typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex, int amount) {
 	string thisVariableDoesNotReallyMatterTooMuch;
-	system("cls");
+	cls;
 	SetConsoleTextAttribute(hConsole, yellow);
 	type(text, 10);
 	SetConsoleTextAttribute(hConsole, white);
@@ -135,7 +135,7 @@ int typingGame(string text, std::vector <int> saveFileLoyalty, int searchedIndex
 
 int typingGameNoIgnore(string text, std::vector <int> saveFileLoyalty, int searchedIndex, int amount) {
 	string thisVariableDoesNotReallyMatterTooMuch;
-	system("cls");
+	cls;
 	SetConsoleTextAttribute(hConsole, yellow);
 	type(text, 20);
 	SetConsoleTextAttribute(hConsole, white);
@@ -197,7 +197,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 	// The members in the array are cooresponding to the heister 1, 2, 3, 4
 	int heisterDowns[4] = { 3, 3, 3, 3 };
 	
-	system("cls");
+	cls;;
 
 	type("You send the Payday Gang to the bank...\n", 30);
 	sleep(1s);
@@ -219,7 +219,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 			type("Your Gang reached the Bank with cops alerted and launching an assault soon!\n", 30);
 			lelip;
-			system("cls");
+			cls;
 			type("Quick! Type this!\n", 30);
 			sleep(1s);
 		}
@@ -236,7 +236,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 		string thisVariableDoesNotReallyMatterTooMuch;
 		actions.push_back("loud");
-		system("cls");
+		cls;
 		PlaySound(TEXT("music.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		// ~ 1
 		cout << "Your Gang reached the Bank with cops alerted and launching an assault soon!\n";
@@ -244,7 +244,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		endl;
 		type("They arrive at the Bank and shoot the visible security guards and gather up hostages", 40);
 		sleep(2s);
-		system("cls");
+		cls;
 		cout << "Quick! Type this!\n";
 		sleep(1s);
 
@@ -253,14 +253,14 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		// ~ 2
 		saveFileLoyalty[searchedIndex] = typingGame("Guys! find the bank manager and get his keycard. The drill and thermite is in the server room.", saveFileLoyalty, searchedIndex, 1);
 
-		system("cls");
+		cls;
 		sleep(1s);
 		
 		int calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
 		type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
 		sleep(2s);
 		endl;
-		system("cls");
+		cls;
 		checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 
 		type("They search for the Bank Manager", 30);
@@ -268,7 +268,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		endl;
 		sleep(2s);
 		ab:
-		system("cls");
+		cls;
 		type("They found the Bank Manager, should they kill him or take him as a hostage?", 40);
 		sleep(2s);
 		endl;
@@ -358,24 +358,24 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		sleep(2s);
 		type("Quick! Type this!", 40);
 		sleep(2s);
-		system("cls");
+		cls;
 
 		int beforeVlaue = saveFileLoyalty[searchedIndex];
 		// ~ 5
 		saveFileLoyalty[searchedIndex] = typingGameNoIgnore("Guys! you need to hook me up to one of the terminals to open the magnetic seal.", saveFileLoyalty, searchedIndex, 1);
 
-		system("cls");
+		cls;
 		sleep(1s);
 
 		calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
 		type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
 		sleep(1s);
 		endl;
-		system("cls");
+		cls;
 		checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 
 		abc:
-		system("cls");
+		cls;
 
 		type("The gang makes their way through the barage of cops to the computer terminal", 40);
 		sleep(2s);
@@ -428,7 +428,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 			saveFileLoyalty[searchedIndex] = int((uselessIntVar / 6));
 
-			system("cls");
+			cls;
 			sleep(1s);
 
 			calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
@@ -439,7 +439,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			endl;
 			sleep(3s);
 			endl;
-			system("cls");
+			cls;
 			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 
 		}
@@ -543,7 +543,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			endl;
 
 			// Random Encounter
-			type(saveFileSuspicion,  40);
+			type(to_string(saveFileSuspicion[searchedIndex]),  40);
 			pause;
 			if ((0.25 + saveFileSuspicion[searchedIndex] / 30)) {
 				int beforeValue = saveFileLoyalty[searchedIndex];
@@ -601,7 +601,7 @@ heistoptions:
 	cin >> option;
 	switch (option) {
 	case 1:
-		system("cls");
+		cls;
 		fwb(saveFileUsername, saveFileBalance, saveFileBudget, saveFileSuspicion, saveFileLoyalty, saveFileReputation, saveFileRisk, searchedIndex, saveFileHeister1, saveFileHeister2, saveFileHeister3, saveFileHeister4);
 		break;
 	
@@ -617,7 +617,7 @@ void crimenet(std::vector <string> saveFileUsername, std::vector <int> saveFileB
 {
 	string message;
 crimenet:
-	system("cls");
+	cls;
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	type("Welcome to ", 150);
 	SetConsoleTextAttribute(hConsole, blue);
@@ -664,7 +664,7 @@ crimenet:
 // Here below is the stats() function, the functions needs reuqired vectors and variables in specific order to display
 // the correct stats. The vector contains all the data of that category and the varible is the index of it.
 int stats(std::vector <string> saveFileUsername, std::vector <int> saveFileBalance, std::vector <int> saveFileBudget, std::vector <int> saveFileSuspicion, std::vector <int> saveFileLoyalty, std::vector <int> saveFileReputation, std::vector <int> saveFileRisk, int searchedIndex, std::vector <string> saveFileHeister1, std::vector <string> saveFileHeister2, std::vector <string> saveFileHeister3, std::vector <string> saveFileHeister4) {
-	system("cls");
+	cls;
 	cout << "Stats:" << "\n";
 	Sleep(300);
 
@@ -853,17 +853,17 @@ int main()
 	SetConsoleTextAttribute(hConsole, white);
 
 	pause;
-	system("cls");
+	cls;
 
 	// a GoTo Loop thing so we can always refer back to it
 mainmenu:
-	system("cls");
+	cls;
 	cout << "1. Play\n";
 	cout << "2. Stats\n";
 	cout << "3. Credits\n";
 	cout << "4. Exit\n";
 	cin >> option;
-	system("cls");
+	cls;
 	// A Switch Case
 	switch (option)
 	{
@@ -902,7 +902,7 @@ mainmenu:
 				p++;
 			}
 			sleep(1s);
-			system("cls");
+			cls;
 
 			while (intro[i] != '\0')
 			{
