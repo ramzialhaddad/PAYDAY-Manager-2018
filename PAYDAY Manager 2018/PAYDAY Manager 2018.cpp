@@ -41,6 +41,7 @@ int white = 15;
 int red = 12;
 int yellow = 14;
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+// This is a store of all the happenings of the heist, used for RNG based events
 std::vector <string> actions;
 
 // This is a funtion to easily change the text colour of the console/terminal/cmd
