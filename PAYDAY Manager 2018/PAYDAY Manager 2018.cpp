@@ -81,6 +81,16 @@ void type(const string& message, unsigned int timeBetweenEachLetter) {
 
 // This is the lose function, it always repeats the statment
 void lose() {
+
+	for (int x = 0; x < 60; x++){
+		srand((unsigned)time(0));
+    	int colourNumber = (rand() % 6) + 10;
+
+    	SetConsoleTextAttribute(hConsole, colourNumber);
+    	printf("GAME OVER");
+    	sleep(0.1s);
+	}
+
 	for (;;) {
 		cls;
 		sleep(2s);
@@ -248,7 +258,6 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		cls;
 		cout << "Quick! Type this!\n";
 		sleep(1s);
-
 		int beforeValue = saveFileLoyalty[searchedIndex];
 		
 		// ~ 2
@@ -320,7 +329,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		type("They find the server room and pick up the drill and thermite", 30);
 		sleep(2s);
 		endl;
-
+		
 		meme:
 		// random chance of thermite not being taken
 		// ~ 3.1
@@ -582,7 +591,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		}
 
-		PlaySound(TEXT("music.wav"), NULL, SND_APPLICATION);
+		//PlaySound(TEXT("music.wav"), NULL, SND_APPLICATION);
 		type("End of the line buddy", 50);
 		pause;
 		break; // end of case
