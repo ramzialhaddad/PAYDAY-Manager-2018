@@ -543,53 +543,78 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 				type(" got downed!", 40);
 				endl;
 				// Continue
-			} // End of random stop
+			}
+		}// End of random stop
+
+		cls;
+		sleep(2s);
+
+		type("The Gang reaches the computer and attempt to reconnect to your VPS", 40);
+		lelip;
+		endl;
+
+		// Random Encounter
+		type(to_string(saveFileSuspicion[searchedIndex]),  40);
+		pause;
+		if ((0.25 + saveFileSuspicion[searchedIndex] / 30)) {
+			int beforeValue = saveFileLoyalty[searchedIndex];
+			cls;
+			type("The Cops are Tracking You!!!", 40);
+			endl;
+			sleep(1s);
+			
+			uselessIntVar = 0;
+
+			uselessIntVar += typingGameNoIgnore("sudo ./openvpn", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("i = switchIPDNS ` ` `  0.0.0.0, 127.0.0.1", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("i.save('/')", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("exit", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("exec openvpn -config -i.cfg", saveFileLoyalty, searchedIndex, 1);
+			uselessIntVar += typingGameNoIgnore("sudo ./cleanup", saveFileLoyalty, searchedIndex, 1);
+
+			saveFileLoyalty[searchedIndex] = int((uselessIntVar / 2));
 
 			cls;
-			sleep(2s);
+			sleep(1s);
 
-			type("The Gang reaches the computer and attempt to reconnect to your VPS", 40);
-			lelip;
+			calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+			type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+			sleep(1s);
 			endl;
+			cls;
+			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 
-			// Random Encounter
-			type(to_string(saveFileSuspicion[searchedIndex]),  40);
-			pause;
-			if ((0.25 + saveFileSuspicion[searchedIndex] / 30)) {
-				int beforeValue = saveFileLoyalty[searchedIndex];
-				cls;
-				type("The Cops are Tracking You!!!", 40);
-				endl;
-				sleep(1s);
-				
-				uselessIntVar = 0;
+		} // End of Random Encounter
 
-				uselessIntVar += typingGameNoIgnore("sudo ./openvpn", saveFileLoyalty, searchedIndex, 1);
-				uselessIntVar += typingGameNoIgnore("i = switchIPDNS ` ` `  0.0.0.0, 127.0.0.1", saveFileLoyalty, searchedIndex, 1);
-				uselessIntVar += typingGameNoIgnore("i.save('/')", saveFileLoyalty, searchedIndex, 1);
-				uselessIntVar += typingGameNoIgnore("exit", saveFileLoyalty, searchedIndex, 1);
-				uselessIntVar += typingGameNoIgnore("exec openvpn -config -i.cfg", saveFileLoyalty, searchedIndex, 1);
-				uselessIntVar += typingGameNoIgnore("sudo ./cleanup", saveFileLoyalty, searchedIndex, 1);
+		// ~6.2
+		cls;
+		sleep(1s);
+		uselessIntVar = 0;
+		
+		uselessIntVar += typingGameNoIgnore("Guys! I need to distract the cops to continue hold them off!", saveFileLoyalty, searchedIndex, 1);
+		uselessIntVar += typingGameNoIgnore("chck channels", saveFileLoyalty, searchedIndex, 1);
+		uselessIntVar += typingGameNoIgnore("switchchannel -c 54", saveFileLoyalty, searchedIndex, 1);
+		uselessIntVar += typingGameNoIgnore("chck frequency", saveFileLoyalty, searchedIndex, 1);
+		uselessIntVar += typingGameNoIgnore("switch frequency -f 132.24", saveFileLoyalty, searchedIndex, 1);
+		uselessIntVar += typingGameNoIgnore("start", saveFileLoyalty, searchedIndex, 1);
 
-				saveFileLoyalty[searchedIndex] = int((uselessIntVar / 2));
+		saveFileLoyalty[searchedIndex] = int((uselessIntVar / 2));
 
-				cls;
-				sleep(1s);
+		cls;
+		sleep(1s);
 
-				calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
-				type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
-				sleep(1s);
-				endl;
-				cls;
-				checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
+		calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+		type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+		sleep(1s);
+		endl;
+		cls;
+		checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
+		// End of 6.2
 
-			} // End of Random Encounter
+		// Either open new port (long, lower risk)
+		// Use same port (short, higher risk)
 
-
-			//Either open new port (long, lower risk)
-			//Use same port (short, higher risk)
-
-		}
+		
 
 		//PlaySound(TEXT("music.wav"), NULL, SND_APPLICATION);
 		type("End of the line buddy", 50);
