@@ -36,16 +36,17 @@ using namespace std;
 int option;
 int loudOrStealth;
 //misc variables
-int blue = 11;
+int cyan = 11;
 int white = 15;
 int red = 12;
 int yellow = 14;
+int darkGreen = 2;
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 // This is a store of all the happenings of the heist, used for RNG based events
 std::vector <string> actions;
 
 // This is a funtion to easily change the text colour of the console/terminal/cmd
-int changeToColour(int colour){
+void changeToColour(int colour){
 	SetConsoleTextAttribute(hConsole, colour);
 }
 
@@ -267,7 +268,9 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		sleep(1s);
 		
 		int calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+		changeToColour(darkGreen);
 		type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+		changeToColour(white);
 		sleep(2s);
 		endl;
 		cls;
@@ -284,7 +287,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		endl;
 		SetConsoleTextAttribute(hConsole, red);
 		type("-kill +2 Risk\n", 30);
-		SetConsoleTextAttribute(hConsole, blue);
+		SetConsoleTextAttribute(hConsole, cyan);
 		type("-hostage -1 Risk\n", 30);
 		SetConsoleTextAttribute(hConsole, white);
 		input;
@@ -292,7 +295,8 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 
 		// ~ 2.1
 		if (thisVariableDoesNotReallyMatterTooMuch == "kill" || thisVariableDoesNotReallyMatterTooMuch == "Kill" || thisVariableDoesNotReallyMatterTooMuch == "k") {
-			SetConsoleTextAttribute(hConsole, red);
+			//SetConsoleTextAttribute(hConsole, red);
+			changeToColour(red);
 			type("Risk increased by 2", 40);
 			SetConsoleTextAttribute(hConsole, white);
 			sleep(1s);
@@ -304,7 +308,8 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 		}
 		else if (thisVariableDoesNotReallyMatterTooMuch == "hostage" || thisVariableDoesNotReallyMatterTooMuch == "Hostage" || thisVariableDoesNotReallyMatterTooMuch == "h") {
-			SetConsoleTextAttribute(hConsole, blue);
+			//SetConsoleTextAttribute(hConsole, blue);
+			changeToColour(cyan);
 			type("Risk decreased by 1", 30);
 			SetConsoleTextAttribute(hConsole, white);
 			sleep(1s);
@@ -349,7 +354,9 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			sleep(1s);
 
 			int calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+			changeToColour(darkGreen);
 			type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+			changeToColour(white);
 			sleep(2s);
 			endl;
 			cls;
@@ -378,7 +385,9 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		sleep(1s);
 
 		calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+		changeToColour(darkGreen);
 		type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+		changeToColour(white);
 		sleep(1s);
 		endl;
 		cls;
@@ -401,7 +410,7 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		type("Which hack do you want to use?\n", 40);
 		SetConsoleTextAttribute(hConsole, red);
 		type("-short +2 Risk\n", 30);
-		SetConsoleTextAttribute(hConsole, blue);
+		SetConsoleTextAttribute(hConsole, cyan);
 		type("-long -1 Risk\n", 30);
 		SetConsoleTextAttribute(hConsole, white);
 
@@ -442,7 +451,9 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			sleep(1s);
 
 			calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+			changeToColour(darkGreen);
 			type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+			changeToColour(white);
 			cout << calculatedResult;
 			endl;
 			cout << uselessIntVar;
@@ -490,7 +501,9 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			sleep(1s);
 
 			calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+			changeToColour(darkGreen);
 			type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+			changeToColour(white);
 			sleep(1s);
 			endl;
 			cls;
@@ -578,7 +591,9 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 			sleep(1s);
 
 			calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+			changeToColour(darkGreen);
 			type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+			changeToColour(white);
 			sleep(1s);
 			endl;
 			cls;
@@ -604,16 +619,45 @@ void fwb(std::vector <string> saveFileUsername, std::vector <int> saveFileBalanc
 		sleep(1s);
 
 		calculatedResult = saveFileLoyalty[searchedIndex] - beforeValue;
+		changeToColour(darkGreen);
 		type("You got a total of " + to_string(calculatedResult) + " loyal points!", 30);
+		changeToColour(white);
 		sleep(1s);
 		endl;
 		cls;
 		checkStats(saveFileLoyalty, saveFileRisk, saveFileSuspicion, searchedIndex);
 		// End of 6.2
 
-		// Either open new port (long, lower risk)
-		// Use same port (short, higher risk)
+		// Start of 7.1
+		if ((randomGenerator(4) + (saveFileRisk[searchedIndex]) / 30) >= 1) {
+			cls;
+			sleep(1.5s);
+			type("Due to your high risk police are tracking you!!", 40);
+			uselessIntVar = 0;
 
+
+		}
+
+		// Start of 7.2
+		choice:
+		type("The cops have stepped up their game to track you, do you want to use the same port that you are using, or change it?", 40);
+		changeToColour(red);
+		type("-Same Risk +5\n", 40);
+		changeToColour(cyan);
+		type("-Change Risk -1\n", 40);
+		changeToColour(white);
+		
+		cin >> thisVariableDoesNotReallyMatterTooMuch;
+
+		if (thisVariableDoesNotReallyMatterTooMuch == "same") {
+			//Do code
+		}
+		else if (thisVariableDoesNotReallyMatterTooMuch == "change") {
+			// Do code
+		}
+		else {
+			goto choice;
+		}
 		
 
 		//PlaySound(TEXT("music.wav"), NULL, SND_APPLICATION);
@@ -655,7 +699,7 @@ crimenet:
 	cls;
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	type("Welcome to ", 150);
-	SetConsoleTextAttribute(hConsole, blue);
+	SetConsoleTextAttribute(hConsole, cyan);
 	type("Crime.net\n", 60);
 	SetConsoleTextAttribute(hConsole, white);
 	sleep(2s);
@@ -903,7 +947,7 @@ mainmenu:
 	switch (option)
 	{
 	case 1:
-		SetConsoleTextAttribute(hConsole, blue);
+		SetConsoleTextAttribute(hConsole, cyan);
 		cout << "Crime.net\n";
 		SetConsoleTextAttribute(hConsole, white);
 		cout << "Please login.\n";
